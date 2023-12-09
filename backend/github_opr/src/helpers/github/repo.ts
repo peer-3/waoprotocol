@@ -6,8 +6,10 @@ import { DEFAULT_REPO_BRANCH } from '../../defaults/repo/clone';
 import fs from 'fs';
 import { WSServer } from '../../web-sockets/init';
 import { exec } from 'child_process';
+import { ethers } from 'ethers';
+import abi from '../../../contracts/snapshots/abi.json';
 
-export const  cloneRepoAndPushToIPFS = async (repoUrl: string, branch: string | undefined , name: string, timestamp: string|number) => {
+export const cloneRepoAndPushToIPFS = async (repoUrl: string, branch: string | undefined, name: string, timestamp: string | number) => {
     try {
         const wss = WSServer.getInstance(null).wss;
         if (!repoUrl || !repoUrl.length || typeof repoUrl !== 'string') {
@@ -89,12 +91,30 @@ export const  cloneRepoAndPushToIPFS = async (repoUrl: string, branch: string | 
         wss.clients.forEach((client) => {
             client.send(JSON.stringify(clientMessage));
         });
-        return result;
+
+        const address = '0x85bEB9F4BCFB0dc0352642aF9E308a4cD6a85775';
+        const repo_name = repoName;
+        const commit_hash = 'dfdks';
+        const html_url = ipfsUrl;
+        const description = ipfsUrl2;
+        const is_private = false;
+        const forks_count = 10;
+        const watchers_count = 10;
+        const size = result.PinSize;
+        const has_issues = false;
+        const branches = '10';
+
+        const alchemyProvider = new ethers.providers.AlchemyProvider('polygon', process.env.API_KEY);
+        const signer = new ethers.Wallet(process.env.PRIVATE_KEY || '', alchemyProvider);
+        const snapshotContract = new ethers.Contract('0x55e8D3d2AD500b2620D8f8f2134d79021d0a15a9', abi, signer);
+        // await snapshotContract.createSnapshot('0x85bEB9F4BCFB0dc0352642aF9E308a4cD6a85775', repoName, 'dfdks', ipfsUrl, ipfsUrl2, false, 10, result.PinSize, timestamp, "10", "11");
+        await snapshotContract.createSnapshot(address, repo_name, commit_hash, html_url, description, is_private, forks_count, watchers_count, size, has_issues, branches);
+        return clientMessage;
     } catch (error) {
         console.log("Error in cloning repo")
         console.error(error);
         return null;
-    } 
+    }
 }
 
 async function cloneRepoAsync(cloneRepoLink: string, repoPath: string): Promise<void> {
