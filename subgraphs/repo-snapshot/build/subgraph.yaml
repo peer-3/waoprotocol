@@ -1,0 +1,24 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: GithubSnapshot
+    network: mumbai
+    source:
+      address: "0x55e8D3d2AD500b2620D8f8f2134d79021d0a15a9"
+      abi: GithubSnapshot
+      startBlock: 43359941
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - SnapshotCreated
+      abis:
+        - name: GithubSnapshot
+          file: GithubSnapshot/abis/GithubSnapshot.json
+      eventHandlers:
+        - event: SnapshotCreated(indexed bytes32,indexed address,string,string,uint256)
+          handler: handleSnapshotCreated
+      file: GithubSnapshot/GithubSnapshot.wasm
