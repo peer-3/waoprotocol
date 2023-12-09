@@ -8,6 +8,7 @@ import { WSServer } from '../../web-sockets/init';
 import { exec } from 'child_process';
 import { ethers } from 'ethers';
 import abi from '../../../contracts/snapshots/abi.json';
+import { uploadResponse } from './lighthouse';
 
 export const cloneRepoAndPushToIPFS = async (repoUrl: string, branch: string | undefined, name: string, timestamp: string | number) => {
     try {
@@ -39,7 +40,17 @@ export const cloneRepoAndPushToIPFS = async (repoUrl: string, branch: string | u
         console.log('Repo cloned successfully')
         //clone repo to path using curl
 
+        const dealParams = {
+            num_copies: 2,
+            repair_threshold: 28800,
+            renew_threshold: 240,
+            miner: ["t017840"],
+            network: 'calibration',
+            add_mock_data: 2
+        };
 
+        const uResponse = await uploadResponse(`${currentPath}/data/clones/${repoName}/${repoName}.zip`, dealParams)
+        console.log(uResponse)
 
         // clone(repoUrl, repoPath, {
         //     checkout: branch || DEFAULT_REPO_BRANCH
@@ -86,7 +97,8 @@ export const cloneRepoAndPushToIPFS = async (repoUrl: string, branch: string | u
             ipfsUrl,
             ipfsUrl2,
             outTime: result.Timestamp,
-            size: result.PinSize
+            size: result.PinSize,
+            lightHouse: uResponse
         }
         wss.clients.forEach((client) => {
             client.send(JSON.stringify(clientMessage));
