@@ -8,6 +8,7 @@ import { Message } from 'kafka-node';
 import { RepoCloneRequest } from './types/github/repo.types';
 import { cloneRepoAndPushToIPFS } from './helpers/github/repo';
 import http from 'http';
+// import { Server } from 'socket.io';
 import { WSServer } from './web-sockets/init';
 
 dotenv.config();
@@ -28,8 +29,18 @@ app.get('/health', (_, res) => {
 
 app.use('/api', allRouters);
 
+const server = http.createServer(app);
+
+// const io = new Server(server, {
+//     cors: {
+//         origin: '*',
+//         methods: ['GET', 'POST']
+//     }
+// });
+
+// let gMessage: any = null;
 app.get('/kafka', (_req, res) => {
-    consumer.on('message', (message: Message) => {
+    consumer.on('message', async (message: Message) => {
         const value = message.value;
         let body: RepoCloneRequest | null;
         if (typeof value !== 'string') {
@@ -39,7 +50,8 @@ app.get('/kafka', (_req, res) => {
         }
         if (body) {
             const { repoUrl, branch, name, timestamp } = body;
-            cloneRepoAndPushToIPFS(repoUrl, branch, name, timestamp);
+            await cloneRepoAndPushToIPFS(repoUrl, branch, name, timestamp);
+            // gMessage = me;
         }
         // console.log(message);    
     });
@@ -49,7 +61,14 @@ app.get('/kafka', (_req, res) => {
     res.send('Kafka consumer added to Express route!');
 });
 
-const server = http.createServer(app);
+// io.on('connection', (socket) => {
+//     console.log('a user connected');
+//     if (gMessage != null) 
+//         socket.emit('message', gMessage);
+//     socket.on('disconnect', () => {
+//         console.log('user disconnected');
+//     });
+// });
 
 const wss = WSServer.getInstance(server).wss;
 
