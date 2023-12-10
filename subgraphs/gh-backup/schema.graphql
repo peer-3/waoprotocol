@@ -1,0 +1,20 @@
+type SnapshotCreated @entity(immutable: true) {
+  id: Bytes!
+  snapshotId: Bytes! # bytes32
+  owner: Bytes! # address
+  repoName: String! # string
+  commitHash: String! # string
+  timestamp: BigInt! # uint256
+  htmlUrl: String! # string
+  description: String! # string
+  isPrivate: Boolean! # bool
+  forksCount: BigInt! # uint256
+  watchersCount: BigInt! # uint256
+  size: BigInt! # uint256
+  hasIssues: Boolean! # bool
+  branches: String! # string
+  price: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
