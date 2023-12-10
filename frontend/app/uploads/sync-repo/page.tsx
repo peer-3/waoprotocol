@@ -15,7 +15,7 @@ const FormElements = () => {
   const [isPrivate, setIsPrivate] = useState(false);
   const [shortDesc, setShortDesc] = useState("");
   const [longDesc, setLongDesc] = useState("");
-  const [sellingPrice, setSellingPrice] = useState("");
+  const [sellingPrice, setSellingPrice] = useState(0);
   const [logo, setLogo] = useState("");
   const [snapshots, setSnapshots] = useState([]);
 
@@ -28,15 +28,30 @@ const FormElements = () => {
     const watchers_count = 10;
     const has_issues = false;
     const branches = '10';
-    const contract = new ethers.Contract('0x55e8D3d2AD500b2620D8f8f2134d79021d0a15a9', abi, signer);
+    const contract = new ethers.Contract('0x8bC6BDf7ACe84aBE0E5AB680Cc3510054B6d87dd', abi, signer);
     console.log(contract)
-    const _rx = await contract.createSnapshot(address, repoLink, 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA', repoLink, shortDesc + longDesc, isPrivate, forks_count, watchers_count, 10, has_issues, branches)
+    // const _rx = await contract.createSnapshot(address, repoLink, 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA', repoLink, shortDesc + longDesc, isPrivate, forks_count, watchers_count, 10, has_issues, branches)
     // const web3Modal = new Web3Modal(); 
     // const connection = await web3Modal.connect();
     // const provider = new ethers.providers.Web3Provider(connection);
     // const signer = provider.getSigner();
     // const contract = fetchContract(signer);
-    const res = await contract.createSnapshot('0x85bEB9F4BCFB0dc0352642aF9E308a4cD6a85775', repoLink, 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA', repoLink, shortDesc + longDesc, isPrivate, forks_count, watchers_count, 10, has_issues, branches);
+    // const res = await contract.createSnapshot('0x85bEB9F4BCFB0dc0352642aF9E308a4cD6a85775', repoLink, 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA', repoLink, shortDesc + longDesc, isPrivate, forks_count, watchers_count, 10, has_issues, branches);
+    const owner = address;
+    const repoName = repoLink
+    const commitHash = 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA'
+    const htmlUrl = commitHash;
+    const description = shortDesc + longDesc;
+    const isPrivate = false;
+    const forksCount = 10
+    const watchersCount = 20
+    const size = 1321
+    const hasIssues = 2
+    const price = sellingPrice
+
+    const rx = await contract.createSnapshot(owner, repoName, commitHash, htmlUrl, description, isPrivate, forksCount, watchersCount, size, hasIssues, 2, price);
+
+    console.log(rx)
 
     await axios.get('http://localhost:5000/kafka');
     const { data } = await axios.post('http://localhost:5001/api/github/clone-repo', {

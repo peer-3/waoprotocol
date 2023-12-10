@@ -16,6 +16,7 @@ contract GithubSnapshot {
         uint256 size;
         bool hasIssues;
         string branches;
+        uint256 price; // New field: price
     }
 
     mapping(bytes32 => RepositorySnapshot) public snapshots;
@@ -25,7 +26,16 @@ contract GithubSnapshot {
         address indexed owner,
         string repoName,
         string commitHash,
-        uint256 timestamp
+        uint256 timestamp,
+        string htmlUrl,
+        string description,
+        bool isPrivate,
+        uint256 forksCount,
+        uint256 watchersCount,
+        uint256 size,
+        bool hasIssues,
+        string branches,
+        uint256 price
     );
 
     function createSnapshot(
@@ -39,7 +49,8 @@ contract GithubSnapshot {
         uint256 _watchersCount,
         uint256 _size,
         bool _hasIssues,
-        string memory _branches
+        string memory _branches,
+        uint256 _price // New parameter: price
     ) external {
         bytes32 snapshotId = keccak256(
             abi.encodePacked(_owner, _repoName, _commitHash, block.timestamp)
@@ -57,7 +68,8 @@ contract GithubSnapshot {
             watchersCount: _watchersCount,
             size: _size,
             hasIssues: _hasIssues,
-            branches: _branches
+            branches: _branches,
+            price: _price // Set the price
         });
 
         snapshots[snapshotId] = newSnapshot;
@@ -67,7 +79,16 @@ contract GithubSnapshot {
             _owner,
             _repoName,
             _commitHash,
-            block.timestamp
+            block.timestamp,
+            _htmlUrl,
+            _description,
+            _isPrivate,
+            _forksCount,
+            _watchersCount,
+            _size,
+            _hasIssues,
+            _branches,
+            _price
         );
     }
 
@@ -88,7 +109,8 @@ contract GithubSnapshot {
             uint256 watchersCount,
             uint256 size,
             bool hasIssues,
-            string memory branches
+            string memory branches,
+            uint256 price
         )
     {
         RepositorySnapshot memory snapshot = snapshots[_snapshotId];
@@ -105,7 +127,8 @@ contract GithubSnapshot {
             snapshot.watchersCount,
             snapshot.size,
             snapshot.hasIssues,
-            snapshot.branches
+            snapshot.branches,
+            snapshot.price
         );
     }
 }
