@@ -1,0 +1,24 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: scroll-sepolia
+    source:
+      address: "0x222a0c86e7da9014e5223DedBaE24144FB98f166"
+      abi: Contract
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - NewBuildCreated
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: NewBuildCreated((uint256,string,string,string,address,uint256,string,string[],string),(string,string,string,string))
+          handler: handleNewBuildCreated
+      file: ./src/contract.ts

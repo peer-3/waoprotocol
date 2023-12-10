@@ -2,6 +2,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import TableOne from "@/components/Tables/TableOne";
 import TableThree from "@/components/Tables/TableThree";
 import TableTwo from "@/components/Tables/TableTwo";
+import axios from "axios";
 
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -10,13 +11,28 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const TablesPage = () => {
+const TablesPage = async () => {
+  const {data: brandD} = await axios.get('http://localhost:3001/api/gql')
+  console.log(brandD)
+  const { snapshotCreateds: data } = brandD.data;
+  // // map data to brand
+  // const brandData = data.map((brand: any) => ({
+  //   name: brand.owner,
+  //   logo: brand?.logo,
+  //   visitors: brand.price,
+  //   revenues: brand.revenues,
+  //   sales: brand.isPrivate,
+  //   conversion: brand.repoName,
+  // }));
   return (
     <>
       <Breadcrumb pageName="Tables" />
 
       <div className="flex flex-col gap-10">
-        <TableOne />
+        {
+          JSON.stringify(data)
+        }
+        {/* <TableOne brandData={brandD}/> */}
         <TableTwo />
         <TableThree />
       </div>

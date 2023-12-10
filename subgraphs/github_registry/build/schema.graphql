@@ -1,0 +1,19 @@
+type NewBuildCreated @entity(immutable: true) {
+  id: Bytes!
+  repository_repoId: BigInt! # uint256
+  repository_name: String! # string
+  repository_fullname: String! # string
+  repository_description: String! # string
+  repository_ownerId: Bytes! # address
+  repository_size: BigInt! # uint256
+  repository_defaultBranch: String! # string
+  repository_topics: [String!]! # string[]
+  repository_language: String! # string
+  build_branch: String! # string
+  build_commitMessage: String! # string
+  build_commitHash: String! # string
+  build_cid: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

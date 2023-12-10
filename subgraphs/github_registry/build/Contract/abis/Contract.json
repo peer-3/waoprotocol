@@ -1,0 +1,257 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "repoId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "branch",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "commitMessage",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "commitHash",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "cid",
+        "type": "string"
+      }
+    ],
+    "name": "createBuild",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "delegateOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "fullname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "size",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "defaultBranch",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "topics",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string",
+        "name": "language",
+        "type": "string"
+      }
+    ],
+    "name": "registerRepository",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "repoId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "fullname",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "ownerId",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "size",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "defaultBranch",
+            "type": "string"
+          },
+          {
+            "internalType": "string[]",
+            "name": "topics",
+            "type": "string[]"
+          },
+          {
+            "internalType": "string",
+            "name": "language",
+            "type": "string"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct DecentralizedGithubRegistry.Repository",
+        "name": "repository",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "branch",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "commitMessage",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "commitHash",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "cid",
+            "type": "string"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct DecentralizedGithubRegistry.Build",
+        "name": "build",
+        "type": "tuple"
+      }
+    ],
+    "name": "NewBuildCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "repoCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "repositories",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "repoId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "fullname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "ownerId",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "size",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "defaultBranch",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "language",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

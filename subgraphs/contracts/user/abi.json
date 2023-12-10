@@ -1,0 +1,1071 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_login",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_node_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_avatar_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_gravatar_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_html_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_followers_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_following_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_gists_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_starred_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_subscriptions_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_organizations_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_repos_url",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_company",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_blog",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_location",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "_hireable",
+				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "_bio",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_twitter_username",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_public_repos",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_public_gists",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_followers",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_following",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_created_at",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_updated_at",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_private_gists",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_total_private_repos",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_owned_private_repos",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_disk_usage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_collaborators",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_suspended_at",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "_business_plus",
+				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "_ldap_dn",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_publicRepos",
+				"type": "string[]"
+			}
+		],
+		"name": "storeGitHubUser",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "company",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "blog",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "hireable",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "bio",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "twitter_username",
+						"type": "string"
+					}
+				],
+				"indexed": false,
+				"internalType": "struct GitHubUserStorage.UserPersonalDetails",
+				"name": "personalDetails",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "login",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "node_id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "avatar_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "gravatar_id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "html_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "followers_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "following_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "gists_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "starred_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "subscriptions_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "organizations_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "repos_url",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "public_repos",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "public_gists",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "followers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "following",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "created_at",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "updated_at",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "private_gists",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "total_private_repos",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "owned_private_repos",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "disk_usage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "collaborators",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "suspended_at",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "business_plus",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "ldap_dn",
+						"type": "string"
+					}
+				],
+				"indexed": false,
+				"internalType": "struct GitHubUserStorage.GitHubDetails",
+				"name": "gitHubDetails",
+				"type": "tuple"
+			},
+			{
+				"indexed": false,
+				"internalType": "string[]",
+				"name": "publicRepos",
+				"type": "string[]"
+			}
+		],
+		"name": "UserAdded",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "allUserAddresses",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllUsers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "company",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "blog",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "location",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "hireable",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "bio",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "twitter_username",
+								"type": "string"
+							}
+						],
+						"internalType": "struct GitHubUserStorage.UserPersonalDetails",
+						"name": "personalDetails",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "login",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "node_id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "avatar_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "gravatar_id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "html_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "followers_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "following_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "gists_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "starred_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "subscriptions_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "organizations_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "repos_url",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "public_repos",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "public_gists",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "followers",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "following",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "created_at",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "updated_at",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "private_gists",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "total_private_repos",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "owned_private_repos",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "disk_usage",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "collaborators",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "suspended_at",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "business_plus",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "ldap_dn",
+								"type": "string"
+							}
+						],
+						"internalType": "struct GitHubUserStorage.GitHubDetails",
+						"name": "gitHubDetails",
+						"type": "tuple"
+					},
+					{
+						"internalType": "string[]",
+						"name": "publicRepos",
+						"type": "string[]"
+					}
+				],
+				"internalType": "struct GitHubUserStorage.GitHubUser[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
+			}
+		],
+		"name": "getUser",
+		"outputs": [
+			{
+				"components": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "company",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "blog",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "location",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "hireable",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "bio",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "twitter_username",
+								"type": "string"
+							}
+						],
+						"internalType": "struct GitHubUserStorage.UserPersonalDetails",
+						"name": "personalDetails",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "login",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "node_id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "avatar_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "gravatar_id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "html_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "followers_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "following_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "gists_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "starred_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "subscriptions_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "organizations_url",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "repos_url",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "public_repos",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "public_gists",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "followers",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "following",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "created_at",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "updated_at",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "private_gists",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "total_private_repos",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "owned_private_repos",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "disk_usage",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "collaborators",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "suspended_at",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "business_plus",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "ldap_dn",
+								"type": "string"
+							}
+						],
+						"internalType": "struct GitHubUserStorage.GitHubDetails",
+						"name": "gitHubDetails",
+						"type": "tuple"
+					},
+					{
+						"internalType": "string[]",
+						"name": "publicRepos",
+						"type": "string[]"
+					}
+				],
+				"internalType": "struct GitHubUserStorage.GitHubUser",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "githubUsers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "company",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "blog",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "hireable",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "bio",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "twitter_username",
+						"type": "string"
+					}
+				],
+				"internalType": "struct GitHubUserStorage.UserPersonalDetails",
+				"name": "personalDetails",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "login",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "node_id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "avatar_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "gravatar_id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "html_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "followers_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "following_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "gists_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "starred_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "subscriptions_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "organizations_url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "repos_url",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "public_repos",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "public_gists",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "followers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "following",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "created_at",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "updated_at",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "private_gists",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "total_private_repos",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "owned_private_repos",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "disk_usage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "collaborators",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "suspended_at",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "business_plus",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "ldap_dn",
+						"type": "string"
+					}
+				],
+				"internalType": "struct GitHubUserStorage.GitHubDetails",
+				"name": "gitHubDetails",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

@@ -1,24 +1,68 @@
-import Buttons from "@/app/ui/buttons/page";
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import CheckboxFive from "@/components/Checkboxes/CheckboxFive";
-import CheckboxFour from "@/components/Checkboxes/CheckboxFour";
-import CheckboxOne from "@/components/Checkboxes/CheckboxOne";
-import CheckboxThree from "@/components/Checkboxes/CheckboxThree";
-import CheckboxTwo from "@/components/Checkboxes/CheckboxTwo";
-import SwitcherFour from "@/components/Switchers/SwitcherFour";
-import SwitcherOne from "@/components/Switchers/SwitcherOne";
-import SwitcherThree from "@/components/Switchers/SwitcherThree";
-import SwitcherTwo from "@/components/Switchers/SwitcherTwo";
-import Link from "next/link";
+"use client";
 
+import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import SwitcherThree from "@/components/Switchers/SwitcherThree";
+import {ethers} from "ethers";
+import abi from "@/contracts/snapshots/abi.json";
 import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Form Elements Page | Next.js E-commerce Dashboard Template",
-  description: "This is Form Elements page for TailAdmin Next.js",
-  // other metadata
-};
+import { getWalletDetails } from "@/utils/web3";
+import { useState } from "react";
+import axios from "axios";
+import Web3Modal from 'web3modal'
 
 const FormElements = () => {
+  const [repoLink, setRepoLink] = useState("");
+  const [isPrivate, setIsPrivate] = useState(false);
+  const [shortDesc, setShortDesc] = useState("");
+  const [longDesc, setLongDesc] = useState("");
+  const [sellingPrice, setSellingPrice] = useState(0);
+  const [logo, setLogo] = useState("");
+  const [snapshots, setSnapshots] = useState([]);
+
+  const fetchContract = (s: any) => new ethers.Contract('0x55e8D3d2AD500b2620D8f8f2134d79021d0a15a9', abi, s);
+
+  const handleSubmit = async () => {
+    const { address, signer } = await getWalletDetails();
+    console.log(abi)
+    const forks_count = 10;
+    const watchers_count = 10;
+    const has_issues = false;
+    const branches = '10';
+    const contract = new ethers.Contract('0x8bC6BDf7ACe84aBE0E5AB680Cc3510054B6d87dd', abi, signer);
+    console.log(contract)
+    // const _rx = await contract.createSnapshot(address, repoLink, 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA', repoLink, shortDesc + longDesc, isPrivate, forks_count, watchers_count, 10, has_issues, branches)
+    // const web3Modal = new Web3Modal(); 
+    // const connection = await web3Modal.connect();
+    // const provider = new ethers.providers.Web3Provider(connection);
+    // const signer = provider.getSigner();
+    // const contract = fetchContract(signer);
+    // const res = await contract.createSnapshot('0x85bEB9F4BCFB0dc0352642aF9E308a4cD6a85775', repoLink, 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA', repoLink, shortDesc + longDesc, isPrivate, forks_count, watchers_count, 10, has_issues, branches);
+    const owner = address;
+    const repoName = repoLink
+    const commitHash = 'https://cloudflare-ipfs.com/ipfs/QmWVVNU8cyxL7Wt514Dycn7QNgdKTdVVQnhWZKbaj8zhQA'
+    const htmlUrl = commitHash;
+    const description = shortDesc + longDesc;
+    const isPrivate = false;
+    const forksCount = 10
+    const watchersCount = 20
+    const size = 1321
+    const hasIssues = 2
+    const price = sellingPrice
+
+    const rx = await contract.createSnapshot(owner, repoName, commitHash, htmlUrl, description, isPrivate, forksCount, watchersCount, size, hasIssues, 2, price);
+
+    console.log(rx)
+
+    await axios.get('http://localhost:5000/kafka');
+    const { data } = await axios.post('http://localhost:5001/api/github/clone-repo', {
+      repoUrl: repoLink,
+      name: "SohamRatnaparkhi"
+    })
+    console.log(data)
+    if (data.data)
+      alert('Repo backup queued')
+  }
+
   return (
     <>
       <Breadcrumb pageName="Backup Details" />
@@ -38,6 +82,7 @@ const FormElements = () => {
                   Repository Link
                 </label>
                 <input
+                  onChange={(e) => setRepoLink(e.target.value)}
                   type="text"
                   placeholder="https://<username>/<repo>"
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -148,6 +193,7 @@ const FormElements = () => {
                   Short Description
                 </label>
                 <textarea
+                  onChange={(e) => setShortDesc(e.target.value)}
                   rows={6}
                   placeholder="Short Description"
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -159,6 +205,7 @@ const FormElements = () => {
                   Long Description
                 </label>
                 <textarea
+                  onChange={(e) => setLongDesc(e.target.value)}
                   rows={6}
                   placeholder="Long Description"
                   className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input"
@@ -186,8 +233,8 @@ const FormElements = () => {
       </div>
       <div className="flex flex-row items-center w-full p-2 m-2">
         <div className="mb-7.5 flex flex-wrap gap-5 xl:gap-7.5 w-full justify-center">
-          <Link
-            href="#"
+          <button
+            onClick={() => handleSubmit()}
             className="inline-flex w-10/12 items-center justify-center gap-2.5 bg-primary py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
           >
             <span>
@@ -210,7 +257,7 @@ const FormElements = () => {
               </svg>
             </span>
             Submit
-          </Link>
+          </button>
 
         </div>
       </div>
